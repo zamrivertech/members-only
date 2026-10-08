@@ -1,0 +1,31 @@
+<h1>New Post</h1>
+
+<%= form_with model: @post do |form| %>
+
+  <div>
+  <%= form.label :title %>
+  <br>
+  <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :body %>
+  <br>    
+    <%= form.textarea :body %>
+  </div>
+
+  <div>
+    <%= form.label :img_url %>
+  <br>    
+    <%= form.text_field :img_url %>
+  </div>
+
+  <div>
+    <%= form.label :source_url %>
+  <br>    
+    <%= form.text_field :source_url %>
+  </div>  
+
+  <%= form.submit %>
+
+<% end %>
