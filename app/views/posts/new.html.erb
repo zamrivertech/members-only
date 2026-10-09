@@ -2,6 +2,12 @@
 
 <%= form_with model: @post do |form| %>
 
+  <ul>
+    <% @post.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  <ul>
+
   <div>
   <%= form.label :title %>
   <br>
@@ -24,8 +30,12 @@
     <%= form.label :source_url %>
   <br>    
     <%= form.text_field :source_url %>
-  </div>  
-
+  </div> 
+  <div style="display: none;">
+  <%= form.label :user_id %>
+  <%= form.number_field :user_id, value: current_user.id %>
+  </div>
   <%= form.submit %>
+
 
 <% end %>

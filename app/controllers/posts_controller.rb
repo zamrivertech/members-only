@@ -6,9 +6,16 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    puts current_user.id
   end
 
   def create
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to posts_path
+    else
+      render new:, status: :unprocessable_content
+    end
   end
 
   private
