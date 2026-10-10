@@ -14,7 +14,9 @@
     <br>
     <%= post.body %>    
     <br>
-    <%= post.has_attribute?(:user_id) ? post.user_id : '' %>        
+    <% if user_signed_in? %> 
+      Written by: <%= post.user.email %>
+    <% end %>       
    </li>
 
  <% end %>
