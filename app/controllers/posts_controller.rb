@@ -1,7 +1,12 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [ :index ]
   def index
-    @posts = Post.all
+    @posts = nil
+    if user_signed_in?
+      @posts = Post.all
+    else
+      @posts = Post.find_by_sql("select title, body from posts")
+    end
   end
 
   def new
