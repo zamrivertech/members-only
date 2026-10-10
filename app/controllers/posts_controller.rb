@@ -6,20 +6,19 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    puts current_user.id
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.save
       redirect_to posts_path
     else
-      render new:, status: :unprocessable_content
+      render new:, status: :unprocessable_entity
     end
   end
 
   private
     def post_params
-      params.expect(post: [ :title, :body, :img_url, :source_url, :user_id ])
+      params.expect(post: [ :title, :body, :img_url, :source_url ])
     end
 end
